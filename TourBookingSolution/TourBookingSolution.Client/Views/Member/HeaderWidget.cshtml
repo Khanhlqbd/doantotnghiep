@@ -1,0 +1,34 @@
+﻿@model TourBookingSolution.Data.ViewModels.MemberView
+@if (Model != null && Model.ID != 0)
+{
+    <li class="profil">
+        <h2><a style="padding:10px 0" href="/thong-tin-tai-khoan.html">@Model.Name</a></h2>
+        <h6>@Model.Level</h6>
+        <a href="" onclick="logOut()" class="a_log">Đăng xuất</a>
+    </li>
+}
+else
+{
+    <li class="profil">
+        <a href="/dang-ky.html" class="a_log">Đăng ký</a>
+        <a href="/dang-nhap.html" class="a_log">Đăng nhập</a>
+    </li>
+}
+<script>
+    function logOut() {
+        $.ajax({
+            url: "/Member/Logout",
+            type: "POST",
+            traditional: true,
+            datatype: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                //alert(result);
+                location.href = "/";
+            },
+            error: function () {
+                return false;
+            }
+        });
+    }
+</script>

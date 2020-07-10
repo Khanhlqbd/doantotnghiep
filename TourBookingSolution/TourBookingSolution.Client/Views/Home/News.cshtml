@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TourBookingSolution.Data.ViewModels.NewsView>
+@using TourBookingSolution.Helper.Core
+<div class="section popular flex">
+    <div class="container">
+        <div class="section-head">
+            <h4>Tin tức</h4>
+            <div class="underline"></div>
+        </div>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                var url = $"/tin-tuc/{item.Title.ToUrlFormat(true, true)}-{item.ID}.html";
+                <div class="content width-50">
+                    <div class="content-img">
+                        <img src="@item.Avatar" alt="">
+                    </div>
+                    <div class="text-head">
+                        @if (item.Title.Length > 50)
+                        {
+                            <h3><a href="@url">@item.Title.Substring(0,45) [...]</a></h3>
+                        }
+                        else
+                        {
+                            <h3><a href="@url">@item.Title</a></h3>
+                        }
+                        <ul>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                        </ul>
+                    </div>
+                    <div class="text">
+                        <p>@item.Desc</p>
+                        <a href="@url" class="button-default">Xem thêm</a>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>

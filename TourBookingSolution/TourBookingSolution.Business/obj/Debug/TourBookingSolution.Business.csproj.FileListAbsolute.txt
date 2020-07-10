@@ -1,0 +1,16 @@
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\bin\Debug\TourBookingSolution.Business.dll
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\bin\Debug\TourBookingSolution.Business.pdb
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\bin\Debug\TourBookingSolution.Data.dll
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\bin\Debug\TourBookingSolution.Helper.dll
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\bin\Debug\TourBookingSolution.Services.dll
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\bin\Debug\EntityFramework.dll
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\bin\Debug\TourBookingSolution.Data.pdb
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\bin\Debug\TourBookingSolution.Helper.pdb
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\bin\Debug\TourBookingSolution.Services.pdb
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\bin\Debug\TourBookingSolution.Services.dll.config
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\bin\Debug\EntityFramework.xml
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\obj\Debug\TourBookingSolution.Business.csprojAssemblyReference.cache
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\obj\Debug\TourBookingSolution.Business.csproj.CoreCompileInputs.cache
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\obj\Debug\TourBookingSolution.Business.csproj.CopyComplete
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\obj\Debug\TourBookingSolution.Business.dll
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Business\obj\Debug\TourBookingSolution.Business.pdb

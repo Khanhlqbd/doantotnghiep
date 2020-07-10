@@ -1,0 +1,199 @@
+﻿@model IEnumerable<TourBookingSolution.Data.ViewModels.OrderDetailView>
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <section id="main-content" class=" ">
+        <section class="wrapper main-wrapper" style=''>
+
+            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                <div class="page-title">
+
+                    <div class="pull-left">
+                        <h1 class="title">Đơn hàng</h1>
+                    </div>
+
+                    <div class="pull-right hidden-xs">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="/"><i class="fa fa-home"></i>Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="/Order/List">Đơn hàng</a>
+                            </li>
+                            <li class="active">
+                                <strong>Chi tiết</strong>
+                            </li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="col-lg-12">
+                <section class="box ">
+                    <header class="panel_header">
+                        <h2 class="title pull-left">Danh sách</h2>
+                        <div class="actions panel_actions pull-right">
+                            <i class="box_toggle fa fa-chevron-down"></i>
+                            <a href=""><i class="box_setting fa fa-refresh"></i></a>
+                        </div>
+                    </header>
+                    <div class="content-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <table id="example" class="display table table-hover table-condensed" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Đơn hàng</th>
+                                            <th>TT</th>
+                                            <th>Bước</th>
+                                            <th>Trạng thái</th>
+                                            <th>Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    @{ int set = 0;}
+                                <tbody>
+                                    @if (Model != null && Model.Count() > 0)
+                                    {
+                                        foreach (var item in Model)
+                                        {
+
+                                            if (!item.IsAccomplish)
+                                            {
+                                                if (set == 0)
+                                                {
+                                                    <tr>
+                                                        <td style="text-transform: uppercase; font-weight: bold; color: #006693;">@item.OrderID</td>
+                                                        <td>@item.Rank</td>
+                                                        <td>
+                                                            @item.StepName
+                                                        </td>
+                                                       
+                                                        <td>
+                                                            @if (item.IsAccomplish)
+                                                            {
+
+                                                                <p>Đã thực hiện</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>Chưa thực hiện</p>
+                                                            }
+                                                        </td>
+
+                                                        <td class="action-td">
+                                                            <div class="row" style="display:block">
+                                                                <p class="label-success" style="cursor:pointer" onclick="updateStatus('/Order/UpdateStep?id=@item.OrderID&step=@item.StepID',@item.OrderID,'@item.StepName')">Cập nhật thực hiện</p>
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                    set++;
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td style="text-transform: uppercase; font-weight: bold; color: #006693;">@item.OrderID</td>
+                                                        <td>@item.Rank</td>
+                                                        <td>
+                                                            @item.StepName
+                                                        </td>
+                                                        <td>
+                                                            @if (item.IsAccomplish)
+                                                            {
+
+                                                                <p>Đã thực hiện</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>Chưa thực hiện</p>
+                                                            }
+                                                        </td>
+
+                                                        <td class="action-td">
+                                                            <div class="row" style="display:block">
+                                                                <p class="label-success disabled" style="cursor:not-allowed">Cập nhật thực hiện</p>
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <tr>
+                                                    <td style="text-transform: uppercase; font-weight: bold; color: #006693;">@item.OrderID</td>
+                                                    <td>@item.Rank</td>
+                                                    <td>
+                                                        @item.StepName
+                                                    </td>
+                                                    <td>
+                                                        @if (item.IsAccomplish)
+                                                        {
+
+                                                            <p>Đã thực hiện</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p>Chưa thực hiện</p>
+                                                        }
+                                                    </td>
+
+                                                    <td class="action-td">
+                                                        <div class="row" style="display:block">
+                                                            <p class="label-success">Đã thực hiện</p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        }
+                                    }
+
+                                </tbody>
+                                </table>
+                                <!-- ********************************************** -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </section>
+
+    <script>
+        function updateStatus(action, id, name) {
+            $.confirm({
+                title: 'Thông báo!',
+                content: 'Xác nhận để cập nhật dữ liệu này - [' + name + ']',
+                buttons: {
+                    ok: function () {
+                        $.ajax({
+                            method: "GET",
+                            url: action,
+                        }).done(function (result) {
+                            if (result != '') {
+                                $.alert({
+                                    title: 'Thông báo!',
+                                    content: 'Xảy ra lỗi khi cập nhật dữ liệu:' + result,
+                                });
+                            }
+                            else {
+                                $.alert({
+                                    title: 'Thông báo!',
+                                    content: 'Đã cập nhật dữ liệu thanh công!',
+                                });
+                                location.reload();
+                            }
+                        })
+                    },
+                    cancel: function () {
+                        return;
+                    }
+                }
+            });
+        }
+    </script>

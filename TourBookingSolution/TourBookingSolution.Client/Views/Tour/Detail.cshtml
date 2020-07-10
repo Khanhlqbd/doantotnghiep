@@ -1,0 +1,37 @@
+﻿@model TourBookingSolution.Data.ViewModels.TourView
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pages section">
+    <div class="container">
+        <div class="blog-single">
+            @if (Model != null && Model.ID != 0)
+            {
+                var url = $"/dat-tour-{Model.ID}.html";
+                <img src="@Model.Avatar" alt="">
+                <div class="blog-single-content">
+                    <h5>@Model.Title</h5>
+                    <div class="date">
+                        <span><i class="fa fa-calendar"></i>Thời gian: @Model.DescTime</span><br />
+                    </div>
+                    <div class="share-post" style="margin: 5px; padding: 5px; text-align: center;">
+                        <a class="button-default" style="margin: 5px;" href="@url">Đặt Tour</a>
+                    </div>
+                    <p>@Html.Raw(Model.Content)</p>
+                    <div class="share-post">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,33 @@
+﻿@model TourBookingSolution.Data.ViewModels.NewsView
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pages section">
+    <div class="container">
+        <div class="blog-single">
+            @if (Model != null && Model.ID != 0)
+            {
+                <img src="@Model.Avatar" alt="">
+                <div class="blog-single-content">
+                    <h5>@Model.Title</h5>
+                    <div class="date">
+                        <span><i class="fa fa-eye"></i> @Model.ViewNumber</span>
+                    </div>
+                    <p>@Html.Raw(Model.Content)</p>
+                    <div class="share-post">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+

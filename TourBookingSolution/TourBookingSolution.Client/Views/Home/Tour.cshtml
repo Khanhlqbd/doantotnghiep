@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TourBookingSolution.Data.ViewModels.TourView>
+@using TourBookingSolution.Helper.Core
+<div class="section popular flex">
+    <div class="container">
+        <div class="section-head">
+            <h4>Tour Nổi Bật</h4>
+            <div class="underline"></div>
+        </div>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                var url = $"/tour/{item.Title.ToUrlFormat(true,true)}-{item.ID}.html";
+                <div class="content width-50">
+                    <div class="content-img">
+                        <img src="@item.Avatar" alt="">
+                        <div class="overlay"><span>@string.Format("{0:0,00}",item.Price)</span></div>
+                    </div>
+                    <div class="text-head">
+                        <h3><a href="@url">@item.Title</a></h3>
+                        <ul>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star-half"></i></li>
+                        </ul>
+                    </div>
+                    <div class="text">
+                        @if (item.Desc != null)
+                        {
+                            if (item.Desc.Length > 50)
+                            {
+                                <p>@item.Desc.Substring(0,47) [...]</p>
+                            }
+                            else
+                            {
+                                <p>@item.Desc</p>
+                            }
+                        }
+                        <a href="@url" class="button-default">Đặt ngay</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

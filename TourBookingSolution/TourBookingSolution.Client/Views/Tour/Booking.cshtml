@@ -1,0 +1,189 @@
+﻿@model TourBookingSolution.Data.ViewModels.TourView
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .checkcontainer {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        padding-bottom: 12px;
+        cursor: pointer;
+        font-size: 13px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        color: #212529;
+        font-weight: normal;
+        line-height: 20px;
+        border-bottom: 1px solid #05f3ff;
+        margin-bottom: 10px;
+    }
+
+        .checkcontainer input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+            .checkcontainer input:checked ~ .radiobtn {
+                background-color: #05f3ff;
+            }
+
+    .radiobtn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        border: 2px solid #0894b9;
+        background: white;
+    }
+
+        .radiobtn:after {
+            top: 9px;
+            left: 9px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+</style>
+<div class="pages section" style="margin-top: 20px !important; padding-top: 10px !important;">
+    <div class="container">
+        <div class="blog-single">
+            @if (ViewBag.IsTrue != null)
+            {
+                if (ViewBag.IsTrue == 0)
+                {
+                    <div class="blog-single-content">
+                        <h5>Tour này đã hết hạn. Vui lòng chọn và đặt Tour khác</h5>
+                    </div>
+                }
+                else
+                {
+                    if (Model != null && Model.ID != 0)
+                    {
+                        <div class="blog-single-content">
+                            <h3 style="padding: 10px 0;">@Model.Title</h3>
+                            <div class="date">
+                                <span><i class="fa fa-calendar"></i>Thời gian: @Model.DescTime</span><br />
+                            </div>
+                            <div class="share-post" style="margin: 5px; padding: 5px; text-align: left;">
+                                <h6>Lịch trình</h6>
+                                @if (ViewBag.StepsLst != null)
+                                {
+                                    foreach (var s in (List<TourBookingSolution.Data.ViewModels.StepView>)ViewBag.StepsLst)
+                                    {
+                                        <p>@s.Name: @s.Desc</p>
+                                    }
+                                }
+                            </div>
+                            <div class="share-post" style=" padding: 10px; text-align: left;">
+                                <p>Giá: <b>@String.Format("{0:0,00}", Model.Price)</b></p>
+                            </div>
+                            <div class="share-post" style=" padding: 10px; text-align: left;">
+                                <p>Khuyến Mãi: <input type="text" id="ip_Code" style="width: 150px; height: 35px; border-radius: 3px;" /> <b class="button-default" onclick="checkPromotion(@Model.Price,@Model.ID)">Kiểm tra</b></p>
+                                <input type="hidden" id="ip_HideCode" />
+                            </div>
+                            <div class="share-post" style=" padding: 10px; text-align: left;">
+                                <p>Giảm giá: <b id="bReduce">0</b></p>
+                            </div>
+                            <div class="share-post" style=" padding: 10px; text-align: left;">
+                                <p>Thành tiền: <b id="bAmount">@String.Format("{0:0,00} đ", Model.Price)</b></p>
+                            </div>
+                            <div class="share-post" style=" padding: 10px; text-align: left;">
+                                <h4 style="padding:15px 0 15px 0">
+                                    Hình thức thanh toán
+                                </h4>
+                                <label class="checkcontainer">
+                                    ATM Nội Địa
+                                    <input type="radio" name="typePayment" checked="checked" value="0">
+                                    <span class="radiobtn"></span>
+                                </label>
+                                <label class="checkcontainer">
+                                    VISA, MASTER, JCB, AMEX, CUP
+                                    <input type="radio" name="typePayment" value="1">
+                                    <span class="radiobtn"></span>
+                                </label>
+
+                            </div>
+                            <div class="share-post" style="margin: 5px; padding: 5px; text-align: center;">
+                                <p class="button-default" style="margin: 5px;"  onclick="paymentAction(@Model.ID)">Thanh Toán</p>
+                            </div>
+                            <div class="share-post">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
+
+                }
+            }
+
+        </div>
+    </div>
+</div>
+<script>
+    function ApplyPromotionParam(code, price, id) {
+        var t = this;
+        t.Code = code;
+        t.Price = price;
+        t.TourID = id;
+    }
+    function PaymentParam(tid, type, code) {
+        var t = this;
+        t.TourID = tid;
+        t.TypePay = type;
+        t.PCode = code;
+    }
+    function checkPromotion(price, id) {
+        var code = $("#ip_Code").val();
+        if (code == "" || code == undefined || code == null) {
+            return;
+        }
+        var data = JSON.stringify(new ApplyPromotionParam(code, price, id));
+        $.ajax({
+            url: "/Tour/CheckPromotion",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                if (result.Status == 1) {
+                    $("#ip_HideCode").val(code);
+                    $("#bReduce").html(result.Reduce);
+                    $("#bAmount").html(result.Price);
+                }
+                else {
+                    alert("Mã khuyến mãi không đúng, hoặc không phù hợp.");
+                }
+            }
+        })
+    }
+    function paymentAction(id) {
+        var code = $("#ip_HideCode").val();
+        var type = $("input[name='typePayment']:checked").val();
+        var data = JSON.stringify(new PaymentParam(id, type, code));
+        $.ajax({
+            url: "/Tour/Payment",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                if (result.Status == 1) {
+                    location.href = result.Uri;
+                }
+            }
+        })
+    }
+</script>

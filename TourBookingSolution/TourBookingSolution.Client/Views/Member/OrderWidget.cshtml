@@ -1,0 +1,54 @@
+﻿@model IEnumerable<TourBookingSolution.Data.ViewModels.OrderView>
+<div class="share-post" style="margin: 5px; padding: 5px; text-align: center;">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Mã
+                </th>
+                <th>
+                    Tour
+                </th>
+                <th>
+                    Trạng thái
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="font-size: 17px;font-weight: bold;color: #00a8b1;text-transform: uppercase">
+                            @item.Code
+                        </td>
+                        <td>
+                            @item.TourName
+                        </td>
+                        <td>
+                            @if (item.Status == 0)
+                            {
+                                <p>Đang đợi</p>
+                            }
+                            @if (item.Status == 1)
+                            {
+                                <p>Đang thực hiện</p>
+                            }
+                            @if (item.Status == 2)
+                            {
+                                <p>Đã xong</p>
+                            }
+                            @if (item.Status == -1)
+                            {
+                                <p>Đã hủy</p>
+                            }
+                        </td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

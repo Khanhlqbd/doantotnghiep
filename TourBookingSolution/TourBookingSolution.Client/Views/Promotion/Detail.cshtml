@@ -1,0 +1,37 @@
+﻿@model TourBookingSolution.Data.ViewModels.PromotionView
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pages section">
+    <div class="container">
+        <div class="blog-single">
+            @if (Model != null && Model.ID != 0)
+            {
+                <img src="@Model.Avatar" alt="">
+                <div class="blog-single-content">
+                    <h5>@Model.Title</h5>
+                    <div class="date">
+                        <span><i class="fa fa-percent"></i>Phần trăm: @Model.PercentReduced %</span><br />
+                        <span><i class="fa fa-dollar"></i>Tiền giảm: @Model.AmountReduced đ</span><br />
+                        <span><i class="fa fa-calendar"></i>Thời gian áp dụng: @String.Format("{0:dd/MM/yyyy}", Model.StartDate) - @String.Format("{0:dd/MM/yyyy}", Model.EndDate)</span><br />
+                        <span><i class="fa fa-code"></i>Mã: <b style="font-size: 16px; color: #af0000; text-transform: uppercase;">@Model.Code</b></span><br />
+                    </div>
+                    <p>@Html.Raw(Model.Content)</p>
+                    <div class="share-post">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+

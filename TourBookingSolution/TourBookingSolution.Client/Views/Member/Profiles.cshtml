@@ -1,0 +1,61 @@
+﻿@model TourBookingSolution.Data.ViewModels.MemberView
+@{
+    ViewBag.Title = "Profiles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="pages section" style="margin-top: 0 !important;">
+        <div class="container">
+            <div class="blog-single">
+                @if (Model != null && Model.ID != 0)
+                {
+                <div class="blog-single-content">
+                    <h5 style="width: 100%; text-align: center; font-size: 25px; font-weight: bold; padding: 15px 0; color: #00a8ba;">@Model.Name</h5>
+                    <div class="date">
+                        <span><i class="fa fa-map-marker"></i>Địa chỉ: @Model.Address</span><br />
+                        <span><i class="fa fa-phone"></i>SĐT: @Model.Phone</span><br />
+                        <span><i class="fa fa-envelope"></i>Mail: @Model.Mail</span><br />
+                    </div>
+                    <div class="share-post" style="margin: 5px; padding: 5px; text-align: center;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style=" text-align: center;">
+                                        Điểm
+                                    </th>
+                                    <th style=" text-align: center;">
+                                        Cấp độ
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style=" text-align: center; font-size: 17px; font-weight: bold; color: #232323;">
+                                        @Model.AccumulatedPoints
+                                    </td>
+                                    <td style=" text-align: center; font-size: 17px; font-weight: bold; color: #232323;">@Model.Level</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="share-post" style="margin: 5px; padding: 5px; text-align: center;">
+                        <a class="button-default" style="margin: 5px;" href="/cap-nhat-tai-khoan.html">Cập nhật thông tin</a>
+                    </div>
+                    @Html.Action("OrderWidget", "Member")
+
+                    <div class="share-post">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+

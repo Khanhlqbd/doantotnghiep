@@ -1,0 +1,189 @@
+﻿@model IEnumerable<TourBookingSolution.Data.ViewModels.OrderView>
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Đơn hàng đang đợi</h2>
+
+                </header>
+                <div class="content-body">
+                    <table id="example" class="display table table-hover table-condensed" cellspacing="0" width="100%">
+                        <thead>
+                        <thead>
+                            <tr>
+                                <th>Mã</th>
+                                <th>Ngày</th>
+                                <th>Thanh toán</th>
+                                <th>Trạng thái</th>
+                                <th>Người mua</th>
+                                <th>Tổng tiền</th>
+                                <th>Giảm giá</th>
+                                <th>Thành tiền</th>
+                                <th>Tour</th>
+                        
+                            </tr>
+                        
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null && Model.Count() > 0 && Model.Where(x=>x.Status==0)!=null)
+                            {
+                                foreach (var item in Model.Where(x => x.Status == 0))
+                                {
+
+
+                                    <tr>
+                                        <td style="text-transform: uppercase; font-weight: bold; color: #006693;">@item.Code</td>
+                                        <td>@String.Format("{0:dd/MM/yyyy HH:mm}", item.Date)</td>
+                                        <td>
+                                            @if (item.IsPayment)
+                                            {
+
+                                                <p>Đã thanh toán</p>
+                                            }
+                                            else
+                                            {
+                                                <p>Chưa thanh toán</p>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.Status == 0)
+                                            {
+                                                <p class="label-warning">Đang đợi</p>
+                                            }
+                                            @if (item.Status == 1)
+                                            {
+                                                <p class="label-primary">Đang thực hiện</p>
+                                            }
+                                            @if (item.Status == 0)
+                                            {
+                                                <p class="label-success">Đã thực hiện</p>
+                                            }
+                                            @if (item.Status == 0)
+                                            {
+                                                <p class="label-danger">Đã hủy</p>
+                                            }
+                                        </td>
+                                        <td>
+                                            @item.MemberName
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,00}", item.Price)
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,00}", item.Reduce)
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,00}", item.Amount)
+                                        </td>
+                                        <td>
+                                            @item.TourName
+                                        </td>
+                                        
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Đơn hàng đang thực hiện</h2>
+
+                </header>
+                <div class="content-body">
+                    <table id="example" class="display table table-hover table-condensed" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Mã</th>
+                                <th>Ngày</th>
+                                <th>Thanh toán</th>
+                                <th>Trạng thái</th>
+                                <th>Người mua</th>
+                                <th>Tổng tiền</th>
+                                <th>Giảm giá</th>
+                                <th>Thành tiền</th>
+                                <th>Tour</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null && Model.Count() > 0 && Model.Where(x => x.Status == 1) != null)
+                            {
+                                foreach (var item in Model.Where(x => x.Status == 1))
+                                {
+
+
+                                    <tr>
+                                        <td style="text-transform: uppercase; font-weight: bold; color: #006693;">@item.Code</td>
+                                        <td>@String.Format("{0:dd/MM/yyyy HH:mm}", item.Date)</td>
+                                        <td>
+                                            @if (item.IsPayment)
+                                            {
+
+                                                <p>Đã thanh toán</p>
+                                            }
+                                            else
+                                            {
+                                                <p>Chưa thanh toán</p>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.Status == 0)
+                                            {
+                                                <p class="label-warning">Đang đợi</p>
+                                            }
+                                            @if (item.Status == 1)
+                                            {
+                                                <p class="label-primary">Đang thực hiện</p>
+                                            }
+                                            @if (item.Status == 0)
+                                            {
+                                                <p class="label-success">Đã thực hiện</p>
+                                            }
+                                            @if (item.Status == 0)
+                                            {
+                                                <p class="label-danger">Đã hủy</p>
+                                            }
+                                        </td>
+                                        <td>
+                                            @item.MemberName
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,00}", item.Price)
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,00}", item.Reduce)
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,00}", item.Amount)
+                                        </td>
+                                        <td>
+                                            @item.TourName
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,38 @@
+﻿@model TourBookingSolution.Data.ViewModels.MemberActionView
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="login-register-wrap-home">
+    <div class="container">
+        <div class="content">
+            <h1>GO GO TOUR</h1>
+            <h6>Tours &amp; Travel</h6>
+            @using (Html.BeginForm("Register", "Member", FormMethod.Post))
+            {
+                @Html.TextBoxFor(model => model.Name, new { @placeholder = "Họ & Tên", @type = "text" })
+                @Html.ValidationMessageFor(model => model.Name)
+                @Html.TextBoxFor(model => model.Address, new { @placeholder = "Địa chỉ", @type = "text" })
+                @Html.ValidationMessageFor(model => model.Address)
+                @Html.TextBoxFor(model => model.Mail, new { @placeholder = "Mail", @type = "text" })
+                @Html.ValidationMessageFor(model => model.Mail)
+                @Html.TextBoxFor(model => model.Phone, new { @placeholder = "SĐT", @type = "text" })
+                @Html.ValidationMessageFor(model => model.Phone)
+                <select class="form-control" id="Gender" name="Gender">
+                    <option value="-1">Không xác định</option>
+                    <option value="1">Nam</option>
+                    <option value="0">Nữ</option>
+                </select>
+                @Html.TextBoxFor(model => model.Account, new { @placeholder = "Tài khoản", @type = "text" })
+                @Html.ValidationMessageFor(model => model.Account)
+                @Html.ValidationSummary(true, "ExistsAccountError", new { @class = "label-danger" })
+                @Html.TextBoxFor(model => model.Password, new { @placeholder = "Mật khẩu", @type = "password" })
+                @Html.ValidationMessageFor(model => model.Password)
+                
+                <button class="button-default" type="submit">Đăng ký</button>
+                <h6>Bạn đã có tài khoản ? <a href="/dang-nhap.html">Đăng nhập</a></h6>
+            }
+        </div>
+    </div>
+</div>
+

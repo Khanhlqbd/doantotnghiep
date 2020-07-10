@@ -1,0 +1,6 @@
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Data\bin\Debug\TourBookingSolution.Data.dll
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Data\bin\Debug\TourBookingSolution.Data.pdb
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Data\obj\Debug\TourBookingSolution.Data.csproj.CoreCompileInputs.cache
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Data\obj\Debug\TourBookingSolution.Data.dll
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Data\obj\Debug\TourBookingSolution.Data.pdb
+D:\JOB\WEB\DO.AN.HUY\TOURSOLUTION\PROJECT\TourBookingSolution\TourBookingSolution.Data\obj\Debug\TourBookingSolution.Data.csprojAssemblyReference.cache
